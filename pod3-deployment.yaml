@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pod3-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pod3
+  template:
+    metadata:
+      labels:
+        app: pod3
+    spec:
+      containers:
+        - name: pod3
+          image: nginx
+          ports:
+            - containerPort: 80
+          command:
+            - /bin/bash
+            - -c
+            - "echo '<html><body><h1>You have reached Pod 3</h1></body></html>' > /usr/share/nginx/html/index.html && nginx -g 'daemon off;'"
